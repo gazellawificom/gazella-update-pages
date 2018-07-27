@@ -37,7 +37,7 @@ $cssContent = '.btn{ color: black; }';  // Example: .btn{ color: black; }
 // PUT DETAILS
 //======================================================================//
  
-$url = 'http'.$sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
+$url = 'http://'.$sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
@@ -51,8 +51,28 @@ if (!empty($ch_data)) {
     $json_data = json_decode($ch_data, true);
     print_r($json_data);
 } else {
-    echo 'Sorry, but there was a problem connecting to the API.';
+    echo 'Sorry, but there was a problem connecting to the API to update HTML.'; 
+    echo '<br />';	
 }
+  
+   
+$url2 = 'http://'.$sysURL.'/api/v2/me/location/'.$locationID.'/css?key='.$apiKey;
+$ch = curl_init($url2);
+curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, $cssContent);   
+$ch_data = curl_exec($ch);  
+curl_close($ch);
+
+if (!empty($ch_data)) {
+    $json_data = json_decode($ch_data, true);
+    print_r($json_data);
+} else {
+    echo 'Sorry, but there was a problem connecting to the API to update CSS.';
+    echo '<br />';	
+} 
  
      
 ?>
