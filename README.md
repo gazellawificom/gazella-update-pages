@@ -61,6 +61,8 @@ $sysURL = "sys.gazellawifi.com";
 /* Insert the location ID / page ID that you'd like to update */ 
 $locationID = "293";
 
+---
+
 /* Insert your HTML content here - please use proper tags, otherwise your page may end up looking funny :) */ 
 $htmlContent = '<h1>Welcome!</h1>';  
 
