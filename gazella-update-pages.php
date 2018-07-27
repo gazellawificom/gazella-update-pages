@@ -24,7 +24,7 @@ $locationID = "XXX";  // Example: 1234
 /* Insert your HTML content here, please remember this will completely replace your current HTML content (No JS or Remote img src
 allowed or will work */ 
 $htmlContent = '<h1>Welcome!</h1>';  // Example: <h1>Welcome!</h1>
-
+  
 //======================================================================//
 // YOUR CSS
 //======================================================================//
@@ -36,15 +36,15 @@ $cssContent = '.btn{ color: black; }';  // Example: .btn{ color: black; }
 //======================================================================//
 // PUT DETAILS
 //======================================================================//
-   
-$url = $sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
+ 
+$url = 'http'.$sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, '<h1>Welcome!</h1>');
-$ch_data = curl_exec($ch);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $htmlContent);
+$ch_data = curl_exec($ch);  
 curl_close($ch);
 
 if (!empty($ch_data)) {
@@ -54,7 +54,5 @@ if (!empty($ch_data)) {
     echo 'Sorry, but there was a problem connecting to the API.';
 }
  
- 
- 
-  
+     
 ?>
