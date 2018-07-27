@@ -13,44 +13,48 @@ $apiKey = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'; // Example: 439_34034030b9393403403
 /* Insert your reseller sys login url here */
 $sysURL = "XXXXXXXXXXXXXX";   // Example: sys.yoursite.com
 
-/* Insert the user ID that you'd like to authenticate as */ 
-$userID = "XXX";  // Example: 1234
+/* Insert the location ID / page ID that you'd like to update */ 
+$locationID = "XXX";  // Example: 1234
+
 
 //======================================================================//
-// SECURE
+// YOUR HTML CONTENT
 //======================================================================//
 
-/* Time Stamp */
-$ts = time(); 
+/* Insert your HTML content here, please remember this will completely replace your current HTML content (No JS or Remote img src
+allowed or will work */ 
+$htmlContent = '<h1>Welcome!</h1>';  // Example: <h1>Welcome!</h1>
 
-/* Hash please */ 
-$blob   = "$userID|$apiKey|$ts";
-$hash   =   hash('sha256', $blob);
+//======================================================================//
+// YOUR CSS
+//======================================================================//
 
-/* Token Scramble */
-$ownerID = strtok($apiKey, '_');
-$loader = [
-    'o'     => $ownerID, 
-    'p'     => $userID,
-    'e'     => $hash,
-    'n' => $ts,   
-]; 
+/* Insert your HTML content here, please remember this will completely replace your current CSS content */ 
+$cssContent = '.btn{ color: black; }';  // Example: .btn{ color: black; }
+   
 
-$param['esig'] =  GZTOKEN::make($loader); 
+//======================================================================//
+// PUT DETAILS
+//======================================================================//
+   
+$url = $sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '<h1>Welcome!</h1>');
+$ch_data = curl_exec($ch);
+curl_close($ch);
 
-/* Gazella Token */
-class GZTOKEN { 
-protected static $m0='gz';public static function secret($j1=null){return $j1?static::$m0=$j1:static::$m0;}protected static function decompose($r2){$r2=base64_decode($r2);$m3=strrpos($r2,'|');return['load' =>json_decode(substr($r2,0,$m3)),'sig' =>substr($r2,$m3+1),];}public static function sign($x4){$w5=json_encode($x4);return sha1($w5.static::$m0);}public static function make($x4){return base64_encode(json_encode($x4).'|'.static::sign($x4));}
+if (!empty($ch_data)) {
+    $json_data = json_decode($ch_data, true);
+    print_r($json_data);
+} else {
+    echo 'Sorry, but there was a problem connecting to the API.';
 }
-
  
-//======================================================================//
-// LOG THEM IN
-//======================================================================//
-
-//This can be used as direct link to login a user into the site
-$ssoURL = "https://".$sysURL."/api-login/?".http_build_query($param);
-
-//Use this line in the login redirect URL
-header("Location: ".$ssoURL);
+ 
+ 
+  
 ?>
