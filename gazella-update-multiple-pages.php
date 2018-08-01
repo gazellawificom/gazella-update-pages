@@ -1,6 +1,6 @@
 <?php
 /* 
- * Remotely update Gazella Wifi Splash pages HTML + CSS for Gazella API 2.0 API
+ * Remotely updates Multiple Gazella Wifi Splash pages HTML + CSS for Gazella API 2.0 API
  */
 
 //======================================================================//
