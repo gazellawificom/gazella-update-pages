@@ -22,8 +22,8 @@ A Page's ID "$locationID":
 
 ### Installing
 
-Upload "gazella-update-pages.php" into your project folder. Example: yourcustomsite.com/project/gazella-update-pages.php.
-Once the file is uploaded you may then edit "gazella-update-pages.php" by replacing the variables with the 'XXXXXXX' values in the "// CONFIGURATION" 
+Upload "gazella-update-single-page.php" into your project folder. Example: yourcustomsite.com/project/gazella-update-single-page.php.
+Once the file is uploaded you may then edit "gazella-update-single-page.php" by replacing the variables with the 'XXXXXXX' values in the "// CONFIGURATION" 
 section of the file with your own variables:
 
 ```
@@ -44,7 +44,7 @@ $userID = "XXX";
 ### Testing / Example
 
 Now that your file will look something like the code below - you may test it by
-simply visiting the file i.e. in your browser navigating to: yourcustomsite.com/project/gazella-update-pages.php
+simply visiting the file i.e. in your browser navigating to: yourcustomsite.com/project/gazella-update-single-page.php
 If successful you will be prompted from our API of success or Error.
  
 ```
