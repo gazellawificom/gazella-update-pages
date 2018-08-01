@@ -2,7 +2,7 @@
 
 Update Gazella Splash pages HTML + CSS remotely 
 
-## Getting Started
+## Getting Started (Single Page)
 
 If you have a Partner or Reseller account with GazellaWifi.com - These instructions will allow to be able to programmatically update a Location's page contents or styling. This comes in handy when you have multiple pages to update content for and you do not wish to update the content via the web browser one-by-one. Or this also can come in handy if you have dynamic content you'd like to change daily. 
 

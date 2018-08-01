@@ -14,7 +14,8 @@ $apiKey = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'; // Example: 439_34034030b9393403403
 $sysURL = "XXXXXXXXXXXXXX";   // Example: sys.yoursite.com
 
 /* Insert the location ID / page ID that you'd like to update */ 
-$locationID = "XXX";  // Example: 1234
+$locations = array();
+$locations = ["XXXX","XXX","XXX"];    // Example: [1234,3422,232323]  
 
 
 //======================================================================//
@@ -23,8 +24,8 @@ $locationID = "XXX";  // Example: 1234
 
 /* Insert your HTML content here, please remember this will completely replace your current HTML content (No JS or Remote img src
 allowed or will work */ 
-$htmlContent = '<h1>Welcome!</h1>';  // Example: <h1>Welcome!</h1>
-  
+$htmlContent = '<center><h1>Welcome! Happy '.date("l").'</h1></center>';  // Example: <h1>Welcome! Happy (Date here)</h1>
+   
 //======================================================================//
 // YOUR CSS
 //======================================================================//
@@ -37,6 +38,8 @@ $cssContent = '.btn{ color: black; }';  // Example: .btn{ color: black; }
 // PUT DETAILS
 //======================================================================//
  
+ 
+foreach ($locations as $locationID) { 
 $url = 'http://'.$sysURL.'/api/v2/me/location/'.$locationID.'/html?key='.$apiKey;
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -74,5 +77,6 @@ if (!empty($ch_data)) {
     echo '<br />';	
 } 
  
-     
+}
+  
 ?>
